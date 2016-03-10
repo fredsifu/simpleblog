@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show]
+  before_action :set_article, only: [:show, :edit, :update]
 
   def index
     @articles = Article.all
@@ -14,9 +14,22 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     
     if @article.save
+      flash[:notice] = "Article was successfully created!"
       redirect_to @article
     else
-      render :new
+      render 'new'
+    end
+  end
+  
+  def edit
+  end
+  
+  def update
+    if @article.update(article_params)
+      flash[:notice] = "Article was successfully updated!"
+      redirect_to @article
+    else
+      render 'edit'
     end
   end
 
