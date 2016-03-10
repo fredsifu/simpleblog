@@ -1,0 +1,40 @@
+<h1 class="center">Welcome to <%= @user.username %>'s journal</h1>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    <%= gravatar_for @user, size: 150 %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="well">
+      <p>Username: <%= @user.username %></p>
+      <p>Email: <%= @user.email %></p>
+    </div>
+  </div>
+</div>
+
+<h3 class="center"><%= @user.username %>'s articles</h3>
+
+<% if @articles.any? %>
+
+<div class="center">
+  <%= will_paginate @articles %>
+</div>
+
+<%= render 'articles/article', articles: @articles %>
+
+<div class="center">
+  <%= will_paginate @articles %>
+</div>
+
+<% else %>
+
+<div class="center">
+  <%= @user.username %> did not contribute yet, but soon!
+</div>
+
+<% end %>
+
+<%= link_to 'Go to articles', articles_path, class: 'btn btn-success' %>

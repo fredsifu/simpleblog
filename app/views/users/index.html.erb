@@ -1,0 +1,24 @@
+<h1 class="center">All bloggers</h1>
+
+<div class="center">
+  <%= will_paginate %>
+</div>
+
+<% @users.each do |user| %>
+<ul class="listing">
+  <div class="row">
+    <div class="well col-md-4 col-md-offset-4 center">
+      <li><%= link_to gravatar_for(user), user_path(user) %></li>
+      <li class="article-title"><%= link_to user.username, user_path(user) %></li>
+      <li><small><%= pluralize(user.articles.count, 'articles') if user.articles %></small></li>
+      <% if logged_in? and current_user.admin? %>
+        <li><%= link_to 'Delete this user', user_path(user), method: :delete, data: { confirm: 'Are you sure you want to delete this user and all their articles?' }, class: 'btn btn-xs btn-danger' %></li>
+      <% end %>
+    </div>
+  </div>
+</ul>
+<% end %>
+
+<div class="center">
+  <%= will_paginate %>
+</div>
