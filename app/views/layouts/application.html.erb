@@ -12,13 +12,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
 <%= render 'layouts/navigation' %>
+
 <%= render 'layouts/messages' %>
 
-<div class="center container">
+<div class="container">
 <%= yield %>
 </div>
 
 <%= render 'layouts/footer' %>
+
 </body>
 </html>
