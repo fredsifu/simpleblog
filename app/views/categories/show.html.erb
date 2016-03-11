@@ -1,0 +1,18 @@
+<h1 class="center">Articles related to <%= @category.name %>
+  <% if logged_in? and current_user.admin? %>
+    <%= link_to edit_category_path(@category), class: 'btn btn-sm btn-warning' do %>
+      <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+</h1>
+
+<div class="center">
+
+  <%= will_paginate @articles %>
+</div>
+
+<%= render 'articles/article', articles: @articles %>
+
+<div class="center">
+  <%= will_paginate @articles %>
+</div>
